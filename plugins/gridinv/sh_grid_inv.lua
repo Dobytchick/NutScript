@@ -133,6 +133,17 @@ function GridInv:getItems(noRecurse)
 	return allItems
 end
 
+function GridInv:getItemAt(x, y)
+    for _, item in pairs(self:getItems(true)) do
+        local iX, iY = item:getData('x'), item:getData('y')
+        if iX == x and iY == y then
+            return item
+        end
+    end
+
+    return nil
+end
+
 if (SERVER) then
 	function GridInv:setSize(w, h)
 		self:setData("w", w)
